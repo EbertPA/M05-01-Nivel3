@@ -1,0 +1,54 @@
+@import "variables"
+
+@mixin contenido-flex
+    display: flex
+    align-items: center
+    justify-content: center
+
+@mixin size($ancho, $alto)
+    width: $ancho
+    height: $alto
+
+@mixin keyframes($name)
+    @keyframes #{$name}
+        @content
+
+@mixin transformacion($opacidad, $grados, $scala-y)
+    opacity: $opacidad
+    transform: skew($grados) scaleY($scala-y) translate(0, 0)
+
+//NIVEL 3
+@mixin animacion($i, $name, $duration)
+    background-color: nth($colores, $i)
+    animation-name: $name
+    animation-duration: $duration
+    animation-timing-function: ease-out
+
+/* strips 1-5: nth-child 1-5 */
+@for $i from 1 through 5
+    $name: strip--#{unique-id()}
+    @if ($i == 1)
+        .strip:nth-child(#{$i}) .strip_content
+            @include animacion($i, $name, $duration:0.5s)
+            @include keyframes($name)
+                from{transform: translate3d(-100%, 0, 0)}
+    @if ($i == 2)
+        .strip:nth-child(#{$i}) .strip_content
+            @include animacion($i, $name, $duration:0.8s)
+            @include keyframes($name)
+                from{transform: translate3d(0, 100%, 0)}
+    @if ($i == 3)
+        .strip:nth-child(#{$i}) .strip_content
+            @include animacion($i, $name, $duration:0.7s)
+            @include keyframes($name)
+                from{transform: translate3d(0, -100%, 0)}
+    @if ($i == 4)
+        .strip:nth-child(#{$i}) .strip_content
+            @include animacion($i, $name, $duration:0.7s)
+            @include keyframes($name)
+                from{transform: translate3d(0, 100%, 0)}
+    @if ($i == 5)
+        .strip:nth-child(#{$i}) .strip_content
+            @include animacion($i, $name, $duration:0.7s)
+            @include keyframes($name)
+                from{transform: translate3d(100%, 0, 0)}

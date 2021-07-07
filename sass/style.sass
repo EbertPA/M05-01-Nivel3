@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css?family=Lato:300&display=swap")
+@import source/variables
+@import source/mixins
+
+/* general */
+*
+  box-sizing: border-box
+
+body
+  margin: 10px 0 0 0
+
+h1
+  font-size: 3.5vw
+  font-weight: 300
+  color: white
+  font-family: $fuente
+
+/* strips */
+.strips
+  @include size(100vw, 100vh)
+  overflow: hidden
+  text-align: center
+  display: flex
+  cursor: pointer
+  .strip
+    position: relative
+    @include size(19.9vw, 100vh)
+    margin: 0.1vw
+    @include contenido-flex
+    text-align: center
+    overflow: hidden
+    .strip_content
+      @include contenido-flex
+      position: absolute
+      @include size(100%, 100vh)
+      text-align: center
+
+      /* before */
+    .strip_content:before
+      content: ""
+      @include contenido-flex
+      position: absolute
+      z-index: 1
+      top: 0
+      left: 0
+      @include size(20vw, 100vh)
+      background: white
+      @include transformacion(0.05, 30deg, 1)
+      -webkit-transform-origin: center center
+      transform-origin: center center
+      transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1)
+      overflow: hidden
+    .strip_content:hover:before
+      @include transformacion(0.2, 0deg, 2)
+/*# sourceMappingURL=style.css.map */
